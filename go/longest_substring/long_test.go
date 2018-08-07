@@ -2,7 +2,7 @@ package long
 
 import "testing"
 
-func longTest(t *testing.T) {
+func TestLong(t *testing.T) {
 	arr := []struct {
 		Str string
 		Len int

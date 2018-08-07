@@ -3,13 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	num := 7
-	switch {
-	case num > 3:
-		fmt.Println("num > 3")
-	case num > 4:
-		fmt.Println("num > 4")
-	default:
-		fmt.Println("default")
+	m := make(map[string]int)
+	m["a"] = 12
+	if v,ok:=m["b"];ok {
+		fmt.Println(v)
+	} else {
+		fmt.Println("Key not found")
 	}
 }
