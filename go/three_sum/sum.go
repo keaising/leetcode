@@ -1,7 +1,6 @@
 package threesum
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -9,7 +8,6 @@ func threeSum(nums []int, target int) [][]int {
 	if len(nums) < 3 {
 		return nil
 	}
-	fmt.Println("wow")
 	sort.Ints(nums)
 	if len(nums) == 3 {
 		if nums[0]+nums[1]+nums[2] == target {
