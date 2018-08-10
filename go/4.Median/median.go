@@ -18,11 +18,17 @@ func findKth(arr1, arr2 []int, k int) int {
 	if k == 1 {
 		return minInt(arr1[0], arr2[0])
 	}
-	return 0
+	n := minInt(len(arr1), k/2)
+	m := minInt(len(arr2), k/2)
+	if arr1[n-1] > arr2[m-1] {
+		return findKth(arr1, arr2[m:], k-m)
+	} else {
+		return findKth(arr1[n:], arr2, k-n)
+	}
 }
 
-func minInt(a,b int) int {
-	if a<b {
+func minInt(a, b int) int {
+	if a < b {
 		return a
 	}
 	return b
