@@ -2,36 +2,28 @@ package LongestPalindromic
 
 func longestPalindrome(s string) string {
 	if len(s) <= 1 {
-		return s
+		return ""
 	}
-	dp := make([][]bool, len(s))
-	for i := range s {
-		for j := range s {
-			if i >= j {
-				dp[i][j] = true
-			} else {
-				dp[i][j] = false
-			}
+	max := 0
+	res := ""
+	for i := 0; i < len(s) -1; i++ {
+		str := lengthOfPalindrome(s, i, i)
+		if max < len(str) {
+			max = len(str)
+			res = str
+		}
+		str = lengthOfPalindrome(s, i, i+ 1)
+		if max < len(str) {
+			max = len(str)
+			res = str
 		}
 	}
-	max := 1
-	rf, rt := 0, 0
-	for k := 1; k < len(s); k++ {
-		for i := 1; k+i < len(s); i++ {
-			j := i + k
-			if s[i] != s[j] {
-				dp[i][j] = false
-			} else {
-				dp[i][j] = dp[i+1][j-1]
-				if dp[i][j] {
-					if k+1 > max {
-						max = k + 1
-						rf = i
-						rt = j
-					}
-				}
-			}
-		}
+	return res
+}
+func lengthOfPalindrome(s string, l, r int) string {
+	for l >= 0 && r < len(s) && s[l] == s[r] {
+		l--
+		r++
 	}
-	return s[rf : rt+1]
+	return s[l+1 : r]
 }
