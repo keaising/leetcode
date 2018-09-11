@@ -2,11 +2,6 @@ package integer
 
 import "strings"
 
-type roman struct {
-	one  string
-	five string
-}
-
 var relation = []struct {
 	num  int
 	one  string
@@ -36,7 +31,7 @@ var relation = []struct {
 
 func intToRoman(num int) string {
 	ret := ""
-	for _, r := range relation {
+	for i, r := range relation {
 		current := (int)(num / r.num)
 		if r.num == 1000 {
 			ret += strings.Repeat(r.one, current)
@@ -46,6 +41,8 @@ func intToRoman(num int) string {
 				ret += strings.Repeat(r.one, current)
 			case current == 4:
 				ret += r.one + r.five
+			case current == 9:
+				ret += r.one + relation[i-1].one
 			default:
 				ret += r.five + strings.Repeat(r.one, current-5)
 			}
