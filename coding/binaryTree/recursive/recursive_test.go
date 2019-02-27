@@ -1,15 +1,18 @@
 package recursive
 
-import "testing"
+import (
+	"../Data"
+	"testing"
+)
 
 func TestPreOrderCur(t *testing.T) {
-	preOrderCur(data)
+	preOrderCur(Data.NormalTree)
 }
 
 func TestInOrderCur(t *testing.T) {
-	inOrderCur(data)
+	inOrderCur(Data.NormalTree)
 }
 
 func TestPostOrderCur(t *testing.T) {
-	postOrderCur(data)
+	postOrderCur(Data.NormalTree)
 }

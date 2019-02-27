@@ -1,18 +1,19 @@
 package recursive
 
 import (
+	"../Data"
 	"fmt"
 
 	"github.com/golang-collections/collections/stack"
 )
 
-func preOrderUncur(head *Node) {
+func preOrderUncur(head *Data.Node) {
 	fmt.Println("pre-order: ")
 	if head != nil {
 		stack := stack.New()
 		stack.Push(head)
 		for stack.Len() > 0 {
-			head, _ = stack.Pop().(*Node)
+			head, _ = stack.Pop().(*Data.Node)
 			fmt.Println(head.Val)
 			if head.Right != nil {
 				stack.Push(head.Right)
@@ -24,7 +25,7 @@ func preOrderUncur(head *Node) {
 	}
 }
 
-func inOrderUncur(head *Node) {
+func inOrderUncur(head *Data.Node) {
 	fmt.Println("in-order: ")
 	if head != nil {
 		stack := stack.New()
@@ -33,7 +34,7 @@ func inOrderUncur(head *Node) {
 				stack.Push(head)
 				head = head.Left
 			} else {
-				head = stack.Pop().(*Node)
+				head = stack.Pop().(*Data.Node)
 				fmt.Println(head.Val)
 				head = head.Right
 			}

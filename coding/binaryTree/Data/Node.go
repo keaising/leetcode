@@ -1,4 +1,4 @@
-package recursive
+package Data
 
 type Node struct {
 	Val   int32
@@ -6,7 +6,7 @@ type Node struct {
 	Right *Node
 }
 
-var data *Node = &Node{
+var NormalTree *Node = &Node{
 	Val: 1,
 	Left: &Node{
 		Val: 2,

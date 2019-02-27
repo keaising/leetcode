@@ -1,8 +1,11 @@
 package recursive
 
-import "fmt"
+import (
+	"../Data"
+	"fmt"
+)
 
-func preOrderCur(head *Node) {
+func preOrderCur(head *Data.Node) {
 	if head == nil {
 		return
 	}
@@ -11,7 +14,7 @@ func preOrderCur(head *Node) {
 	preOrderCur(head.Right)
 }
 
-func inOrderCur(head *Node) {
+func inOrderCur(head *Data.Node) {
 	if head == nil {
 		return
 	}
@@ -20,7 +23,7 @@ func inOrderCur(head *Node) {
 	inOrderCur(head.Right)
 }
 
-func postOrderCur(head *Node) {
+func postOrderCur(head *Data.Node) {
 	if head == nil {
 		return
 	}
