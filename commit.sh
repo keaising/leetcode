@@ -1,6 +1,6 @@
 git add .
 
-msg = 'commit at `date`'
+msg='commit at `date`'
 
 git commit -m msg
 
