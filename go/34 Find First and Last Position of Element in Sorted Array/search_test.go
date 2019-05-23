@@ -9,6 +9,11 @@ func TestSearchRange(t *testing.T) {
 		result []int
 	}{
 		{
+			nums:   []int{1, 2, 3},
+			target: 2,
+			result: []int{1, 1},
+		},
+		{
 			nums:   []int{1, 3},
 			target: 1,
 			result: []int{0, 0},
@@ -32,6 +37,11 @@ func TestSearchRange(t *testing.T) {
 			nums:   []int{4, 4},
 			target: 4,
 			result: []int{0, 1},
+		},
+		{
+			nums:   []int{1, 4},
+			target: 4,
+			result: []int{1, 1},
 		},
 	}
 	for _, input := range inputs {

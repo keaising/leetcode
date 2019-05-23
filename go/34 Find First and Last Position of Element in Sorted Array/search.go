@@ -21,7 +21,7 @@ func searchRange(nums []int, target int) []int {
 	pStart := -1
 	pEnd := -1
 
-	for start < end {
+	for start <= end {
 		mid := (start + end) / 2
 		if target < nums[mid] {
 			end = mid - 1
@@ -42,12 +42,11 @@ func leftSearch(target, left, right int, nums []int) int {
 	if left == right {
 		return left
 	}
-	for left < right {
+	for right < len(nums) && left <= right && nums[right] == target {
 		mid := (left + right) / 2
 		if target <= nums[mid] {
 			right = mid - 1
-		}
-		if target > nums[mid] {
+		} else if target > nums[mid] {
 			left = mid + 1
 		}
 	}
@@ -58,12 +57,11 @@ func rightSearch(target, left, right int, nums []int) int {
 	if left == right {
 		return right
 	}
-	for left < right {
+	for left < len(nums) && left <= right && nums[left] == target {
 		mid := (left + right) / 2
 		if target < nums[mid] {
 			right = mid - 1
-		}
-		if target >= nums[mid] {
+		} else if target >= nums[mid] {
 			left = mid + 1
 		}
 	}
