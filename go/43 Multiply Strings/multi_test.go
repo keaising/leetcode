@@ -9,23 +9,29 @@ func TestSum(t *testing.T) {
 		expect string
 		no     int
 	}{
-		// {
-		// 	num1:   "4",
-		// 	num2:   "6",
-		// 	expect: "24",
-		// 	no:     1,
-		// },
-		// {
-		// 	num1:   "123",
-		// 	num2:   "456",
-		// 	expect: "56088",
-		// 	no:     1,
-		// },
+		{
+			num1:   "4",
+			num2:   "6",
+			expect: "24",
+			no:     1,
+		},
+		{
+			num1:   "123",
+			num2:   "456",
+			expect: "56088",
+			no:     2,
+		},
+		{
+			num1:   "2",
+			num2:   "3",
+			expect: "6",
+			no:     3,
+		},
 		{
 			num1:   "123456789",
 			num2:   "123456789",
 			expect: "15241578750190521",
-			no:     1,
+			no:     4,
 		},
 	}
 	for _, test := range tests {

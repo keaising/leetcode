@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math"
-	"strconv"
+	"strings"
 )
 
 func multiply(num1 string, num2 string) string {
@@ -15,34 +14,20 @@ func multiply(num1 string, num2 string) string {
 	if num1 == "0" || num2 == "0" {
 		return "0"
 	}
-	if l1 > l2 {
-		num1, num2 = num2, num1
-	} else if num1[0] > num2[0] {
-		num1, num2 = num2, num1
-	}
-	ret := float64(0)
-	n1 := conv(num1)
-	n2 := conv(num2)
-	ii := float64(0)
-	for i := float64(1); i <= n1; i++ {
-		ret += n2
-		ii = i
-	}
-	fmt.Println(ii)
-	return FloatToString(ret)
-}
 
-func conv(num string) float64 {
-	ret := float64(0)
-	l := len(num)
-	for i, n := range num {
-		no, _ := strconv.Atoi(string(n))
-		ret += math.Pow10(l-i-1) * float64(no)
+	storage := make([]int, l1+l2)
+	for i := range num1 {
+		for j := range num2 {
+			storage[i+j+1] += int(num1[i]-'0') * int(num2[j]-'0')
+		}
+	}
+	for i := len(storage)-1; i >1; i-- {
+		storage[i-1] += storage[i] / 10
+		storage[i] = storage[i] % 10
+	}
+	ret := strings.Trim(strings.Replace(fmt.Sprint(storage), " ", "", -1), "[]")
+	if ret[0] == '0' {
+		ret = ret[1:]
 	}
 	return ret
-}
-
-func FloatToString(input_num float64) string {
-	// to convert a float number to a string
-	return strconv.FormatFloat(input_num, 'f', 0, 64)
 }
