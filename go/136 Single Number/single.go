@@ -1,16 +1,17 @@
 package main
 
+import "fmt"
+
 func singleNumber(nums []int) int {
-	dict := map[int]int{}
-	for _, num := range  nums {
-		if dict[num] > 0 {
-			delete(dict, num)
-		} else {
-			dict[num]++
-		}
+	result := 0
+	for _, v := range nums {
+		result = result ^ v
+		fmt.Println(result, v)
 	}
-	for k := range dict{
-		return k
-	}
-	return 0
+	return result
+}
+
+func main() {
+	test := []int{1,2,1,3,3}
+	singleNumber(test)
 }
