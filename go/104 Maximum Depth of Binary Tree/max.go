@@ -14,12 +14,19 @@ type TreeNode struct {
  *     Right *TreeNode
  * }
  */
-func isSymmetric(root *TreeNode) bool {
+func maxDepth(root *TreeNode) int {
 	if root == nil {
-		return true
+		return 0
 	}
-
-
+	if root.Left != nil || root.Right != nil {
+		return 1+bigger(maxDepth(root.Left), maxDepth(root.Right))
+	}
+	return 1
 }
 
-
+func bigger(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
