@@ -11,8 +11,8 @@ import "fmt"
  * }
  */
 func levelOrder(root *TreeNode) [][]int {
-	if root != nil {
-		return [][]int{}
+	if root == nil {
+		return nil
 	}
 	result := [][]int{}
 	arr := []*TreeNode{}
