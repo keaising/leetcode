@@ -6,7 +6,7 @@ func simplifyPath2(path string) string {
 	arr := strings.Split(path, "/")
 	stack := []string{}
 
-	for _, str:=range arr {
+	for _, str := range arr {
 		curr := strings.TrimSpace(str)
 		if curr == ".." {
 			if len(stack) > 0 {
