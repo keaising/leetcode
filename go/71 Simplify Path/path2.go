@@ -19,3 +19,4 @@ func simplifyPath2(path string) string {
 
 	return "/" + strings.Join(stack, "/")
 }
+
