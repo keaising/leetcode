@@ -11,26 +11,22 @@ func flatten(root *TreeNode) {
 		return
 	}
 	q := Queue{}
-	q = q.in(root.Left)
-	q = q.in(root.Right)
+	q.fill(root)
 	curr := root
-	for len(q) > 0 {
-		node, q := q.pop()
-		if node != nil {
-			q = q.in(node.Left)
-			q = q.in(node.Right)
-			curr.Left = nil
-			curr.Right = node
-			curr = node
-		}
+	for _, node := range q {
+		curr.Left = nil
+		curr.Right = node
+		curr = node
 	}
 }
 
 func (q Queue) fill(root *TreeNode) Queue {
 	if root != nil {
 		q = q.in(root)
-		
+		q = q.fill(root.Left)
+		q = q.fill(root.Right)
 	}
+	return q
 }
 
 type Queue []*TreeNode
