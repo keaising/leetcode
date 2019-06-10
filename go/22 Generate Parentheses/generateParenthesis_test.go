@@ -1,4 +1,4 @@
-package generateParenthesis
+package parenthes
 
 import (
 	"fmt"

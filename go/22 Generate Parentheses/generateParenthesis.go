@@ -1,8 +1,8 @@
-package generateParenthesis
+package parenthes
 
 import "fmt"
 
-func generateParenthesis(n int) []string {
+func generateParenthesis2(n int) []string {
 	if n == 0 {
 		return nil
 	}
@@ -13,7 +13,7 @@ func generateParenthesis(n int) []string {
 		return []string{"()()", "(())"}
 	}
 	m := make(map[string]int)
-	for _, pair := range generateParenthesis(n - 1) {
+	for _, pair := range generateParenthesis2(n - 1) {
 		m["()"+pair]=1
 		m[pair+"()"]=1
 		m["("+pair+")"]=1
