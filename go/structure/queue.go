@@ -2,15 +2,15 @@ package structure
 
 type Queue []*TreeNode
 
-func (q Queue) In(node *TreeNode) Queue {
-	q = append(q, node)
-	return q
+func (q *Queue) In(node *TreeNode) {
+	*q = append(*q, node)
 }
 
-func (q Queue) Pop() (*TreeNode, Queue) {
-	if len(q) == 0 {
-		return nil, q
+func (q *Queue) Pop() *TreeNode {
+	if len(*q) == 0 {
+		return nil
 	}
-	return q[0], q[1:]
+	ret := (*q)[0]
+	*q = (*q)[1:]
+	return ret
 }
-
