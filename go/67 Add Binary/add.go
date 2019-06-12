@@ -1,45 +1,32 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "strconv"
 
 func addBinary(a string, b string) string {
-	length := 0
-	if len(a) > len(b) {
-		length = len(a)
-	} else {
-		length = len(b)
+	if len(a) < len(b) {
+		a, b = b, a
 	}
-	fmt.Println(length)
-	arr := make([]int, length+1)
-	for i, r := range a {
-		arr[length-1-(len(a)-1-i)] += int(r - '0')
+	zeroes := ""
+	for i := 0; i < len(a)-len(b); i++ {
+		zeroes += "0"
 	}
-	fmt.Println(1, arr)
-
-	for i, r := range b {
-		arr[length-1-i] += int(r - '0')
-	}
-	fmt.Println(2, arr)
-	for i := length - 1; i > 0; i-- {
-		arr[i-1] += arr[i] % 2
-		arr[i] = arr[i] / 2
-		fmt.Println(i, arr[i])
-	}
-	fmt.Println(3, arr)
+	b = zeroes + b
+	carry := 0
+	current := 0
 	result := ""
-	for i, v := range arr {
-		if i == 0 && v != 0 {
-			result = result + "1"
+	for i := len(a) - 1; i >= 0; i-- {
+		if string(a[i]) == "1" {
+			carry++
 		}
-		result = result + strconv.Itoa(v)
+		if string(b[i]) == "1" {
+			carry++
+		}
+		current = carry % 2
+		carry = carry / 2
+		result = strconv.Itoa(current) + result
+	}
+	if carry > 0 {
+		result = "1" + result
 	}
 	return result
-}
-
-func main() {
-	result := addBinary("11", "1")
-	fmt.Println(result)
 }
