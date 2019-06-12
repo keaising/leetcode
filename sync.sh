@@ -12,6 +12,6 @@ msg="$cmit `date +%FT%H:%M:%S`"
 
 git commit -m "$msg"
 
-git pull -r
+git pull origin master -r
 
-git push
+git push origin master
