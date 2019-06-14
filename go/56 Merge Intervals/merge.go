@@ -5,24 +5,26 @@ import (
 )
 
 func merge(intervals [][]int) [][]int {
+	if intervals == nil || len(intervals) == 0 {
+		return nil
+	}
 	m := new(Matrix)
 	*m = intervals
 	sort.Sort(*m)
 
 	ret := [][]int{}
 	carry := intervals[0]
-	for _, m := range *m {
-		if carry[1] <= m[0] {
-			carry[1] = m[1]
+	for i := 1; i < len(intervals); i++ {
+		if carry[1] >= (*m)[i][0] {
+			carry[1] = bigger((*m)[i][1], carry[1])
 		} else {
 			ret = append(ret, append([]int{}, carry...))
-			carry[0] = m[0]
-			carry[1] = m[1]
+			carry[0] = (*m)[i][0]
+			carry[1] = (*m)[i][1]
 		}
 	}
-	if carry[0] == (*m)[len(*m)-1][0] {
-		ret = append(ret, append([]int{}, carry...))
-	}
+	ret = append(ret, append([]int{}, carry...))
+
 	return ret
 }
 
@@ -44,4 +46,11 @@ func (m Matrix) Less(a, b int) bool {
 
 func (m Matrix) Swap(a, b int) {
 	m[a], m[b] = m[b], m[a]
+}
+
+func bigger(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
