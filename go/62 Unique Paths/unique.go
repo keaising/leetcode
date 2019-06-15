@@ -1,6 +1,6 @@
 package main
 
-func uniquePaths(m int, n int) int {f
+func uniquePaths(m int, n int) int {
 	if m == 0 || n == 0 {
 		return 0
 	}
