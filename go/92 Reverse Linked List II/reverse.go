@@ -6,24 +6,23 @@ type ListNode struct {
 }
 
 func reverseBetween(head *ListNode, m int, n int) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
 	dummy := new(ListNode)
 	dummy.Next = head
-	head = dummy
+	pre := dummy
 
-	for i := 1; i < m; i++ {
-		head = head.Next
+	for i := 0; i < m-1; i++ {
+		pre = pre.Next
 	}
-
-	pre := head.Next
-	curr := pre.Next
-	for i := 0; i < n-m; i++ {
-		temp := curr.Next
-		curr.Next = pre
-		pre = curr
-		curr = temp
+	cur := pre.Next
+	temp := cur.Next
+	for i := m; i < n; i++ {
+		temp = cur.Next
+		cur.Next = temp.Next
+		temp.Next = pre.Next
+		pre.Next = temp
 	}
-	head.Next.Next = curr
-	head.Next = pre
-	head = dummy.Next
-	return head
+	return dummy.Next
 }
