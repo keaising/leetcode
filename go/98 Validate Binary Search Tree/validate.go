@@ -10,11 +10,20 @@ func isValidBST(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
-	if root.Left != nil && root.Val < root.Left.Val {
-		return false
+	stack := [](*TreeNode){}
+	var pre *TreeNode
+	for root != nil || len(stack) > 0 {
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}
+		root = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if pre != nil && root.Val < pre.Val {
+			return false
+		}
+		pre = root
+		root = root.Right
 	}
-	if root.Right != nil && root.Val > root.Right.Val {
-		return false
-	}
-	return isValidBST(root.Left) && isValidBST(root.Right)
+	return true
 }
