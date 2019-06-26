@@ -1,7 +1,5 @@
 #!/bin/bash
 
-git add .
-
 cmit=""
 if [ "$1" == '' ];
 then cmit="commit at"
