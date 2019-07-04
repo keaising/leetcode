@@ -35,8 +35,7 @@ func reorderList(head *ListNode) {
 	for second != nil {
 		first.Next = second
 		second.Next = firstNext
-		firstNext.Next = secondNext
-		first = secondNext
-		second =
+		first = firstNext
+		second = secondNext
 	}
 }
