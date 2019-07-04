@@ -19,11 +19,24 @@ func reorderList(head *ListNode) {
 		prev = walker
 		walker = walker.Next
 	}
+	mid := prev
 	next := walker.Next
 	for walker != nil {
 		next = walker.Next
 		walker.Next = prev
 		prev = walker
 		walker = next
+	}
+	mid.Next = nil
+	second := walker
+	secondNext := walker.Next
+	first := head
+	firstNext := head.Next
+	for second != nil {
+		first.Next = second
+		second.Next = firstNext
+		firstNext.Next = secondNext
+		first = secondNext
+		second =
 	}
 }
