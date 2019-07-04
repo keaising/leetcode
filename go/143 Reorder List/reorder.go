@@ -9,33 +9,28 @@ func reorderList(head *ListNode) {
 	if head == nil {
 		return
 	}
-	walker, runner, prev := head, head, head
+	walker, runner := head, head
+	first := head
 	for runner != nil && runner.Next != nil {
-		prev = walker
 		walker = walker.Next
 		runner = runner.Next.Next
 	}
-	if runner != nil {
-		prev = walker
-		walker = walker.Next
+	cur := walker.Next
+	walker.Next = nil
+
+	var prev *ListNode = nil
+	for cur != nil {
+		next := cur.Next
+		cur.Next = prev
+		prev = cur
+		cur = next
 	}
-	mid := prev
-	next := walker.Next
-	for walker != nil {
-		next = walker.Next
-		walker.Next = prev
-		prev = walker
-		walker = next
-	}
-	mid.Next = nil
-	second := walker
-	secondNext := walker.Next
-	first := head
-	firstNext := head.Next
-	for second != nil {
-		first.Next = second
-		second.Next = firstNext
-		first = firstNext
-		second = secondNext
+
+	for prev != nil && first != nil {
+		p1, p2 := first.Next, prev.Next
+		first.Next = prev
+		prev.Next = p1
+		first = p1
+		prev = p2
 	}
 }
