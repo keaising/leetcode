@@ -18,7 +18,7 @@ func reorderList(head *ListNode) {
 	cur := walker.Next
 	walker.Next = nil
 
-	var prev *ListNode = nil
+	var prev *ListNode
 	for cur != nil {
 		next := cur.Next
 		cur.Next = prev
