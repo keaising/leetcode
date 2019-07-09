@@ -10,17 +10,19 @@ func sortList(head *ListNode) *ListNode {
 		return head
 	}
 
-	end := head
-	for end.Next != nil {
-		end = end.Next
+	prev := &ListNode{
+		Next:head,
 	}
-	return helper(head, head, end)
+	helper(&prev, nil)
+
+	return prev.Next
 }
 
-func helper(head *ListNode, left, right *ListNode) *ListNode {
+func helper(left, right **ListNode) {
 	for pivot, cur := left, left.Next; cur != nil; cur = cur.Next {
 		if cur.Val > pivot.Val {
 
 		}
 	}
+	return nil
 }
