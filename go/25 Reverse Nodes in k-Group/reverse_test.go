@@ -8,6 +8,10 @@ func TestReorder(t *testing.T) {
 		ans  []int
 	}{
 		{
+			nums: []int{1, 2},
+			ans:  []int{2, 1},
+		},
+		{
 			nums: []int{1, 2, 3, 4, 5, 6, 7},
 			ans:  []int{2, 1, 4, 3, 6, 5, 7},
 		},
