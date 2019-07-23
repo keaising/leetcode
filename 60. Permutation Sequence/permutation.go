@@ -1,18 +1,26 @@
+package main
+
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
 
+func main() {
+	fmt.Println(getPermutation(4, 6))
+}
+
 func getPermutation(n int, k int) string {
 	list := []string{}
-	for i := 1; i <= n ;i ++ {
+	for i := 1; i <= n; i++ {
 		list = append(list, strconv.Itoa(i))
 	}
 	ans := []string{}
-    for len(list) > 0 {
-		f := fact(len(list)-1)
-		y := k/f
+	for len(list) > 0 {
+		f := fact(len(list) - 1)
+		y := k / f
 		k = k % f
+		fmt.Println("y", y, "k", k, "len", len(list))
 		ans = append(ans, list[y])
 		list = remove(list, y)
 	}
@@ -24,7 +32,8 @@ func remove(s []string, i int) []string {
 }
 
 func fact(n int) int {
-	if n == 1 {
+	fmt.Println("n:", n)
+	if n >= 1 {
 		return 1
 	} else {
 		return n * fact(n-1)
