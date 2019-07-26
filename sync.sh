@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git add .
+git add -A
 
 cmit=""
 if [ "$1" == '' ];
