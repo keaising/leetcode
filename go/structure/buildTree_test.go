@@ -60,9 +60,7 @@ func TestStr2Node(t *testing.T) {
 		{
 			"5th",
 			"nil",
-			&TreeNode{
-				Val: 4,
-			},
+			nil,
 		},
 	}
 
