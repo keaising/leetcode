@@ -9,8 +9,6 @@ if ($null -eq $args[0]) {
 
 $msg=$cmit + (Get-Date -Format "yyyy-MM-ddTHH:mm:ss")
 
-Write-Output $msg
-
 git commit -m $msg
 
 git pull origin master -r
