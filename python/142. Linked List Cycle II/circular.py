@@ -4,6 +4,7 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode:
         l1 = l2 = head
@@ -17,4 +18,3 @@ class Solution:
                     l2 = l2.next
                 return l2
         return None
-        
