@@ -24,11 +24,11 @@ func fullJustify(words []string, maxWidth int) []string {
 	var lastLineItem []string
 	for i := indexs[len(indexs)-1][0]; i <= indexs[len(indexs)-1][1]; i++ {
 		lastLineItem = append(lastLineItem, words[i])
-		content := strings.Join(lastLineItem, " ")
-		spaceWidth := maxWidth - len(content)
-		content += strings.Repeat(" ", spaceWidth)
-		result = append(result, content)
 	}
+	content := strings.Join(lastLineItem, " ")
+	spaceWidth := maxWidth - len(content)
+	content += strings.Repeat(" ", spaceWidth)
+	result = append(result, content)
 	return result
 }
 
@@ -82,7 +82,7 @@ func expand(words []string, index []int, maxWidth int) string {
 	)
 
 	if begin == end {
-		return words[begin]
+		return words[begin] + strings.Repeat(" ", maxWidth-len(words[begin]))
 	}
 	for i := begin; i <= end; i++ {
 		charCount += len(words[i])
