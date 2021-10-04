@@ -5,8 +5,8 @@ import (
 )
 
 func fullJustify(words []string, maxWidth int) []string {
-	if len(words) == 0 {
-		return nil
+	if len(words) < 2 {
+		return words
 	}
 	var result []string
 
