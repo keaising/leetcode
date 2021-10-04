@@ -39,6 +39,14 @@ func Test_fullJustify(t *testing.T) {
 				"shall be        ",
 			},
 		},
+		{
+			name: "3",
+			args: args{
+				words:    []string{"a"},
+				maxWidth: 2,
+			},
+			want: []string{"a "},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

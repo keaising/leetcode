@@ -5,7 +5,7 @@ import (
 )
 
 func fullJustify(words []string, maxWidth int) []string {
-	if len(words) < 2 {
+	if len(words) == 0 {
 		return words
 	}
 	var result []string
@@ -14,7 +14,7 @@ func fullJustify(words []string, maxWidth int) []string {
 	if len(indexs) == 1 {
 		content := strings.Join(words, " ")
 		spaceWidth := maxWidth - len(content)
-		content += strings.Repeat("", spaceWidth)
+		content += strings.Repeat(" ", spaceWidth)
 		result = append(result, content)
 		return result
 	}
