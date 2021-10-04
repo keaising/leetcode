@@ -8,11 +8,26 @@ func fullJustify(words []string, maxWidth int) []string {
 	if len(words) == 0 {
 		return nil
 	}
+	var result []string
 
 	indexs := splitToLines(words, maxWidth)
-	var result []string
-	for _, index := range indexs {
-		result = append(result, expand(words, index, maxWidth))
+	if len(indexs) == 1 {
+		content := strings.Join(words, " ")
+		spaceWidth := maxWidth - len(content)
+		content += strings.Repeat("", spaceWidth)
+		result = append(result, content)
+		return result
+	}
+	for i := 0; i < len(indexs)-1; i++ {
+		result = append(result, expand(words, indexs[i], maxWidth))
+	}
+	var lastLineItem []string
+	for i := indexs[len(indexs)-1][0]; i <= indexs[len(indexs)-1][1]; i++ {
+		lastLineItem = append(lastLineItem, words[i])
+		content := strings.Join(lastLineItem, " ")
+		spaceWidth := maxWidth - len(content)
+		content += strings.Repeat(" ", spaceWidth)
+		result = append(result, content)
 	}
 	return result
 }
@@ -20,7 +35,7 @@ func fullJustify(words []string, maxWidth int) []string {
 // split into multiple lines, each line has begin and end
 func splitToLines(words []string, maxWidth int) [][]int {
 	var (
-		begin, end = 0, 0
+		begin, end = 0, -1
 		charCount  = 0
 		itemCount  = 0
 		result     [][]int
@@ -39,7 +54,7 @@ func splitToLines(words []string, maxWidth int) [][]int {
 			if charCount+space+len(word) > maxWidth {
 				result = append(result, []int{begin, end})
 				begin = end + 1
-				end = begin
+				end = begin - 1
 				charCount = 0
 				itemCount = 0
 				space = 0
