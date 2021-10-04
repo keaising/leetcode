@@ -43,10 +43,8 @@ func splitToLines(words []string, maxWidth int) [][]int {
 	)
 	for i, word := range words {
 		switch {
-		case itemCount == 1:
+		case itemCount > 0:
 			space = 1
-		case itemCount > 1:
-			space = 2
 		default:
 			space = 0
 		}
@@ -64,7 +62,6 @@ func splitToLines(words []string, maxWidth int) [][]int {
 		charCount += space + len(word)
 		itemCount += 1
 		end += 1
-
 	}
 
 	result = append(result, []int{begin, len(words) - 1})

@@ -122,6 +122,21 @@ func Test_splitToLines(t *testing.T) {
 				{4, 5},
 			},
 		},
+		{
+			name: "3",
+			args: args{
+				words:    []string{"Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"},
+				maxWidth: 20,
+			},
+			want: [][]int{
+				{0, 3},
+				{4, 5},
+				{6, 9},
+				{10, 13},
+				{14, 16},
+				{17, 17},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
