@@ -9,21 +9,21 @@ func main() {
 }
 
 func minTransfers(transactions [][]int) int {
-    var m = make(map[int]int) // account -> balance
-    for _, t := range transactions {
-        var f, t, a = t[0], t[1], t[2] // from, to, amount
-        m[f] -= a
-        m[t] += a
-    }
-    
-    var amounts = []int{}
-    for _, b := range m {
-        if b != 0 { // skip balanced accounts
-            amounts = append(amounts, b)
-        }
-    }
-    
-    return transfer(0, amounts)
+	var m = make(map[int]int) // account -> balance
+	for _, t := range transactions {
+		var f, t, a = t[0], t[1], t[2] // from, to, amount
+		m[f] -= a
+		m[t] += a
+	}
+
+	var amounts = []int{}
+	for _, b := range m {
+		if b != 0 { // skip balanced accounts
+			amounts = append(amounts, b)
+		}
+	}
+
+	return transfer(0, amounts)
 }
 
 func transfer(start int, debt []int) int {
@@ -45,9 +45,9 @@ func transfer(start int, debt []int) int {
 			res = t + 1
 		}
 		debt[i] -= debt[start]
-        if debt[i]-debt[start] == 0 {
-            break
-        }
+		if debt[i]-debt[start] == 0 {
+			break
+		}
 	}
 	return res
 }
