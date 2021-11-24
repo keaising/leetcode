@@ -1,6 +1,9 @@
 package main
 
-import "log"
+import (
+	"log"
+	"math"
+)
 
 func main() {
 	p := [][]int{
@@ -41,5 +44,6 @@ func bigger(arr ...int) int {
 			max = item
 		}
 	}
+	math.MinInt64
 	return max
 }
