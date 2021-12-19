@@ -38,54 +38,40 @@ func main() {
 	log.Println(result)
 }
 
-var max int
-var visit [][]int
-
-var dirs = map[int][]int{
-	1: {0, 1},
-	2: {0, -1},
-	3: {1, 0},
-	4: {-1, 0},
-}
-
 func minCost(grid [][]int) int {
-	max = len(grid) * len(grid[0])
-	visit = [][]int{}
+	max := len(grid) * len(grid[0])
+	visit := [][]bool{}
+	var dirs = map[int][]int{
+		1: {0, 1},
+		2: {0, -1},
+		3: {1, 0},
+		4: {-1, 0},
+	}
 	for range grid {
-		var row []int
+		var row []bool
 		for range grid[0] {
-			row = append(row, 0)
+			row = append(row, false)
 		}
 		visit = append(visit, row)
 	}
-	min(grid, grid[0][0], 0, 0, 0)
+	var q = [][]int{{0, 0, 0}}
+	for len(q) > 0 {
+		x, y, cost := q[0][0], q[0][1], q[0][2]
+		q = q[1:]
+		if x == len(grid)-1 && y == len(grid[0])-1 {
+			return cost
+		}
+		visit[x][y] = true
+		for c, d := range dirs {
+			dx, dy := x+d[0], y+d[1]
+			if dx >= 0 && dx < len(grid) && dy >= 0 && dy < len(grid[0]) && !visit[dx][dy] {
+				if c == grid[x][y] {
+					q = append([][]int{{dx, dy, cost}}, q...)
+				} else {
+					q = append(q, []int{dx, dy, cost + 1})
+				}
+			}
+		}
+	}
 	return max
-}
-
-func min(grid [][]int, dir, x, y int, count int) {
-	if x >= len(grid) || x < 0 {
-		return
-	}
-	if y >= len(grid[0]) || y < 0 {
-		return
-	}
-	if x == len(grid)-1 && y == len(grid[0])-1 {
-		if max > count {
-			max = count
-		}
-		return
-	}
-	if visit[x][y] == 1 {
-		return
-	}
-	visit[x][y] = 1
-
-	for c, d := range dirs {
-		if c == grid[x][y] {
-			min(grid, c, x+d[0], y+d[1], count)
-		} else {
-			min(grid, c, x+d[0], y+d[1], count+1)
-		}
-	}
-	visit[x][y] = 0
 }
